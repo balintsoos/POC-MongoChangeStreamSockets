@@ -1,9 +1,11 @@
-FROM node:alpine
-
-COPY ./src /project
+FROM node:15.0.1-alpine
 
 WORKDIR /project
 
-RUN npm i --save
+COPY ./src/package*.json ./
 
-CMD npm start
+RUN npm ci
+
+COPY ./src ./
+
+CMD sleep 5 && npm start
